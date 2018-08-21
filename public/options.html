@@ -23,6 +23,7 @@
                 MessengerExtensions.getContext('<APP_ID>',
                     function success(thread_context) {
                         // success
+                        console.log('PSID: '+thread_context.psid);
                         document.getElementById("psid").value = thread_context.psid;
                     },
                     function error(err) {
