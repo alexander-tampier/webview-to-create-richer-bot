@@ -20,10 +20,10 @@
         MessengerExtensions.getSupportedFeatures(function success(result) {
             let features = result.supported_features;
             if (features.includes("context")) {
-                MessengerExtensions.getContext('<APP_ID>',
+                MessengerExtensions.getContext('388352654935309',
                     function success(thread_context) {
                         // success
-                        console.log('PSID: '+thread_context.psid);
+                        console.log('ThreadContext: '+thread_context);
                         document.getElementById("psid").value = thread_context.psid;
                     },
                     function error(err) {
