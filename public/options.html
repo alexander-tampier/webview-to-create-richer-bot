@@ -1,64 +1,74 @@
 <html>
+
 <head>
     <title>Choose your preferences</title>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <!-- master css -->
+    <link rel="stylesheet" href="options.css">
 </head>
+
 <body>
-<script>
-    (function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {
-            return;
-        }
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'Messenger'));
+    <div class="container">
+        <div class="card-panel">
+            <div class="row">
+                <input type="hidden" name="psid" id="psid">
+                <div class="input-field col s12">
+                    <select id="pillows-select">
+                       <option value="" disabled selected>Choose your pillow</option>
+                       <option name="pillows" value="soft">Soft</option>
+                       <option name="pillows" value="hard">Hard</option>
+                   </select>
+                    <label>Pillows</label>
+                </div>
+            </div>
 
-    window.extAsyncInit = () => {
-        // TODO: How to parse env file from here?
-        MessengerExtensions.getSupportedFeatures(function success(result) {
-            let features = result.supported_features;
-            if (features.includes("context")) {
-                MessengerExtensions.getContext('388352654935309',
-                    function success(thread_context) {
-                        // success
-                        console.log('ThreadContext: '+thread_context);
-                        document.getElementById("psid").value = thread_context.psid;
-                    },
-                    function error(err) {
-                        // error
-                        console.log(err);
-                    }
-                );
-            }
-        }, function error(err) {
-            // error retrieving supported features
-            console.log(err);
-        });
-        document.getElementById('submitButton').addEventListener('click', () => {
-            MessengerExtensions.requestCloseBrowser(function success() {
-                console.log("Webview closing");
-            }, function error(err) {
-                console.log(err);
-            });
-        });
-    };
+            <div class="row">
+                <div class="col s12 divider"></div>
+            </div>
 
-</script>
-<form action="/optionspostback" method="get">
-    <input type="hidden" name="psid" id="psid">
-    <h3>Pillows</h3>
-    <input type="radio" name="pillows" value="soft" checked>Soft<br>
-    <input type="radio" name="pillows" value="hard">Hard<br>
-    <h3>Bed</h3>
-    <input type="radio" name="bed" value="single" checked>Single<br>
-    <input type="radio" name="bed" value="double">Double<br>
-    <input type="radio" name="bed" value="twin">Twin<br>
-    <h3>View</h3>
-    <input type="radio" name="view" value="sea" checked>Sea<br>
-    <input type="radio" name="view" value="street">Street<br>
-    <input type="submit" value="Submit" id="submitButton">
-</form>
+            <div class="row">
+                <div class="input-field col s12">
+                    <select id="bed-select">
+                   <option value="" disabled selected>Choose your bed</option>
+                   <option name="bed" value="single">Single</option>
+                   <option name="bed" value="double">Double</option>
+                   <option name="bed" value="twin">Twin</option>
+                 </select>
+                    <label>Bed</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12 divider"></div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <select class="view-select">
+       <option value="" disabled selected>Choose your view</option>
+       <option name="view" value="sea">Sea</option>
+       <option name="view" value="street">Street</option>
+     </select>
+                    <label>View</label>
+                </div>
+            </div>
+            <div class="row">
+                <a class="waves-effect waves-light btn" id="submitButton">
+                <i class="material-icons left">check_circle</i>button</a>
+            </div>
+        </div>
+    </div>
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <!-- master js -->
+    <script src="options.js"></script>
 </body>
+
 </html>
