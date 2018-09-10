@@ -16,7 +16,9 @@ const callSendAPI = (senderPsid, response) => {
     },
     message: response,
   };
-  console.log(requestBody);
+
+  console.log(`Message that will be send: ${JSON.stringify(requestBody)}`);
+
   // Send the HTTP request to the Messenger Platform
   request(
     {
@@ -37,4 +39,4 @@ const callSendAPI = (senderPsid, response) => {
   );
 };
 
-module.exports.callSendAPI = callSendAPI;
+module.exports = callSendAPI;

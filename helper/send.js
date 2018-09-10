@@ -1,11 +1,9 @@
-const { SERVER_URL } = process.env;
-
 /**
  * Define the template and webview
- * @param {[type]} senderPsid [description]
- * @return {[type]} [description]
+ * @param {[type]} serverUri [description]
+ * @return {[type]} response [description]
  */
-const setRoomPreferences = () => {
+const setRoomPreferences = (serverUri) => {
   const response = {
     attachment: {
       type: 'template',
@@ -16,7 +14,7 @@ const setRoomPreferences = () => {
         buttons: [
           {
             type: 'web_url',
-            url: `${SERVER_URL}/options`,
+            url: `${serverUri}/options`,
             title: 'Set preferences',
             webview_height_ratio: 'compact',
             messenger_extensions: true,

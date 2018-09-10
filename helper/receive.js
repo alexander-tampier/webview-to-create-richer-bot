@@ -1,13 +1,14 @@
-const { setRoomPreferences } = require('./send');
-const sendToApi = require('./sendToApi');
+const setRoomPreferences = require('./send');
+const callSendAPI = require('./sendToApi');
 
 /**
- * Handles messages events
+ * handles messageEvents
  * @param  {[type]} senderPsid      [description]
  * @param  {[type]} receivedMessage [description]
- * @return {[type]}                  [description]
+ * @param  {[type]} serverUri       [description]
+ * @return {[type]}                 [description]
  */
-const handleMessage = (senderPsid, receivedMessage) => {
+const handleMessage = (senderPsid, receivedMessage, serverUri) => {
   let response;
 
   // Checks if the message contains text
@@ -19,7 +20,7 @@ const handleMessage = (senderPsid, receivedMessage) => {
         .toLowerCase()
     ) {
       case 'room preferences':
-        response = setRoomPreferences();
+        response = setRoomPreferences(serverUri);
         break;
       default:
         response = {
@@ -34,7 +35,7 @@ const handleMessage = (senderPsid, receivedMessage) => {
   }
 
   // Send the response message
-  sendToApi.callSendAPI(senderPsid, response);
+  callSendAPI(senderPsid, response);
 };
 
 /**
@@ -56,7 +57,7 @@ function handlePostback(senderPsid, receivedPostback) {
     response = { text: 'Oops, try sending another image.' };
   }
   // Send the message to acknowledge the postback
-  sendToApi.callSendAPI(senderPsid, response);
+  callSendAPI(senderPsid, response);
 }
 
 module.exports = {

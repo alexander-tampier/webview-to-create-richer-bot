@@ -45,7 +45,7 @@ router.post('/', (req, res) => {
       // Check if the event is a message or postback and
       // pass the event to the appropriate handler function
       if (webhookEvent.message) {
-        handleMessage(senderPsid, webhookEvent.message);
+        handleMessage(senderPsid, webhookEvent.message, req.get('host'));
       } else if (webhookEvent.postback) {
         handlePostback(senderPsid, webhookEvent.postback);
       }
