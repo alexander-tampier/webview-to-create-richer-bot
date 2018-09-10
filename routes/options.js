@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 
 const router = express.Router();
 
@@ -14,7 +15,9 @@ router.get('/', (req, res) => {
     } else if (referer.indexOf('www.facebook.com') >= 0) {
       res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.facebook.com/');
     }
-    res.sendFile('../public/options.html', { root: __dirname });
+
+    // res.sendFile('public/options.html', { root: __dirname });
+    res.sendFile('options.html', { root: path.join(__dirname, '../public') });
   }
 });
 

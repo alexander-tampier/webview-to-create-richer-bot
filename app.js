@@ -2,6 +2,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
+const path = require('path');
 
 if (process.env.NODE_ENV !== 'production') {
   dotenv.load();
@@ -23,7 +24,7 @@ const { PORT } = process.env;
 app.set('port', PORT || 1337);
 
 /* ----------  Static Assets  ---------- */
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 /* ----------  Parsers  ---------- */
 app.use(bodyParser.json());
