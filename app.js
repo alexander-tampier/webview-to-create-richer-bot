@@ -3,6 +3,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 
+if (process.env.NODE_ENV !== 'production') {
+  dotenv.load();
+}
+
 /* ----------  ROUTES  ---------- */
 const index = require('./routes/index');
 const options = require('./routes/options');
@@ -24,9 +28,6 @@ app.use(express.static('public'));
 /* ----------  Parsers  ---------- */
 app.use(bodyParser.json());
 
-if (process.env.NODE_ENV !== 'production') {
-  dotenv.load();
-}
 
 /* =============================================
    =                   Routes                  =
@@ -34,7 +35,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 /* ----------  Primary / Happy Path  ---------- */
 
-app.use('/', index);
+app.use('/version', index);
 app.use('/options', options);
 app.use('/optionspostback', optionspostback);
 app.use('/webhook', webhooks);

@@ -1,5 +1,5 @@
 const { setRoomPreferences } = require('./send');
-const { callSendAPI } = require('./sendToApi');
+const sendToApi = require('./sendToApi');
 
 /**
  * Handles messages events
@@ -34,7 +34,7 @@ const handleMessage = (senderPsid, receivedMessage) => {
   }
 
   // Send the response message
-  callSendAPI(senderPsid, response);
+  sendToApi.callSendAPI(senderPsid, response);
 };
 
 /**
@@ -56,7 +56,7 @@ function handlePostback(senderPsid, receivedPostback) {
     response = { text: 'Oops, try sending another image.' };
   }
   // Send the message to acknowledge the postback
-  callSendAPI(senderPsid, response);
+  sendToApi.callSendAPI(senderPsid, response);
 }
 
 module.exports = {

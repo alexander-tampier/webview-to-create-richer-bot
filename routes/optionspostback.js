@@ -5,6 +5,9 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
   const body = req.query;
+
+  console.log(`Request /optionspostback Body: ${body}`);
+
   const response = {
     text: `Great, I will book you a ${body.bed} bed, with ${
       body.pillows

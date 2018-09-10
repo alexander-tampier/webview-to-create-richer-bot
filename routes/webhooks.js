@@ -6,7 +6,7 @@ const router = express.Router();
 const { VERIFY_TOKEN } = process.env;
 
 // Accepts GET requests at the /webhook endpoint
-router.get('/webhook', (req, res) => {
+router.get('/', (req, res) => {
   // Parse params from the webhook verification request
   const mode = req.query['hub.mode'];
   const token = req.query['hub.verify_token'];
@@ -27,7 +27,7 @@ router.get('/webhook', (req, res) => {
 });
 
 // Accepts POST requests at the /webhook endpoint
-router.post('/webhook', (req, res) => {
+router.post('/', (req, res) => {
   // Parse the request body from the POST
   const { body } = req;
 

@@ -37,4 +37,4 @@ const callSendAPI = (senderPsid, response) => {
   );
 };
 
-module.exports = callSendAPI;
+module.exports.callSendAPI = callSendAPI;
