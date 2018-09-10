@@ -14,7 +14,7 @@ const setRoomPreferences = (serverUri) => {
         buttons: [
           {
             type: 'web_url',
-            url: `${serverUri}/options`,
+            url: `https://${serverUri}/options`,
             title: 'Set preferences',
             webview_height_ratio: 'compact',
             messenger_extensions: true,
