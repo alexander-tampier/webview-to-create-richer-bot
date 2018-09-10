@@ -30,6 +30,8 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   // Parse the request body from the POST
   const { body } = req;
+  // Get the serverURI and the related port
+  const serverUri = req.get('host');
 
   // Check the webhook event is from a Page subscription
   if (body.object === 'page') {
@@ -45,7 +47,7 @@ router.post('/', (req, res) => {
       // Check if the event is a message or postback and
       // pass the event to the appropriate handler function
       if (webhookEvent.message) {
-        handleMessage(senderPsid, webhookEvent.message, req.get('host'));
+        handleMessage(senderPsid, webhookEvent.message, serverUri);
       } else if (webhookEvent.postback) {
         handlePostback(senderPsid, webhookEvent.postback);
       }
