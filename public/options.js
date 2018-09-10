@@ -29,6 +29,7 @@ window.extAsyncInit = () => {
   // Call /optionspostback and submit all values out of the form
   document.getElementById('submitButton').addEventListener('click', () => {
 
+    const psid = $('#psid').val();
     const pillowsSelect = $('select#pillows-select').val();
     const bedSelect = $('select#bed-select').val();
     const viewSelect = $('select#view-select').val();
@@ -36,6 +37,7 @@ window.extAsyncInit = () => {
     console.log(`Pillow: ${pillowsSelect}, Bed: ${bedSelect}, View: ${viewSelect}`);
 
     $.get('/optionspostback', {
+      'psid': psid,
       'pillows': pillowsSelect,
       'bed': bedSelect,
       'view': viewSelect,
