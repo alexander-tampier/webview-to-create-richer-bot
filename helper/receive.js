@@ -1,4 +1,5 @@
 const { setRoomPreferences } = require('./send');
+const { callSendAPI } = require('./sendToApi');
 
 /**
  * Handles messages events
@@ -34,7 +35,7 @@ const handleMessage = (senderPsid, receivedMessage) => {
 
   // Send the response message
   callSendAPI(senderPsid, response);
-}
+};
 
 /**
  * handle postback event
@@ -60,8 +61,5 @@ function handlePostback(senderPsid, receivedPostback) {
 
 module.exports = {
   handleMessage,
-  handleReceiveMessage,
-  handleReceiveReferral,
-  handleNewGiftSelected,
-  handleNewGiftPurchased,
+  handlePostback,
 };
